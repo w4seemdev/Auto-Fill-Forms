@@ -1,0 +1,120 @@
+{
+  "_readme": "Copy this file to profile.json and fill in YOUR real data. profile.json is git-ignored and never leaves your machine. It is the SINGLE SOURCE OF TRUTH — the agent never invents facts that are not here.",
+
+  "personal_information": {
+    "first_name": "Jane",
+    "middle_name": null,
+    "last_name": "Doe",
+    "full_name": "Jane Doe",
+    "email": "jane.doe@example.com",
+    "phone": "+15551234567",
+    "phone_display": "+1 555 123 4567",
+    "phone_country_code": "+1",
+    "city": "Your City",
+    "country": "Your Country",
+    "address_line": null,
+    "postal_code": null
+  },
+
+  "headline": "Your Title | Main Skills",
+
+  "summary": "2-4 sentence professional summary. Only true, verifiable facts — the agent uses this to write free-text answers.",
+
+  "links": {
+    "linkedin": "https://www.linkedin.com/in/your-handle",
+    "github": "https://github.com/your-handle",
+    "portfolio": null
+  },
+
+  "documents": {
+    "resume_pdf": "data/resume.pdf",
+    "cover_letter_template": null
+  },
+
+  "experience": [
+    {
+      "title": "Job Title",
+      "company": "Company Name",
+      "location": "City, Country",
+      "start": "2024-01",
+      "end": "2025-06",
+      "current": false,
+      "description": "What you did, in 2-3 sentences."
+    }
+  ],
+
+  "projects": [
+    {
+      "name": "Project Name",
+      "description": "What it is and what you built.",
+      "tech": ["Tech1", "Tech2"]
+    }
+  ],
+
+  "education": [
+    {
+      "school": "University Name",
+      "location": "City, Country",
+      "degree": "Bachelor's Degree",
+      "field_of_study": "Your Major",
+      "graduation_year": 2026,
+      "start_year": 2022,
+      "gpa": null
+    }
+  ],
+
+  "certifications": [
+    "Certification Name — Issuer (Year)"
+  ],
+
+  "skills": {
+    "languages": ["JavaScript", "TypeScript"],
+    "frontend": ["React"],
+    "tools_and_databases": ["Git"],
+    "methodologies": ["Agile"]
+  },
+
+  "spoken_languages": [
+    { "language": "English", "proficiency": "Fluent" }
+  ],
+
+  "legal_authorization": {
+    "authorized_to_work_in": ["Your Country"],
+    "requires_visa_sponsorship_for_relocation": true,
+    "_note": "Sponsorship depends on WHERE THE WORK IS PERFORMED, not where the company is. Job in your country, or remote role worked from your country → authorized: Yes, sponsorship: No. Role requiring relocation/onsite presence in another country → authorized there: No, sponsorship: Yes. Posting ambiguous about remote eligibility from your country → STOP and ask the user. Never claim authorization anywhere except the listed countries."
+  },
+
+  "work_preferences": {
+    "remote": true,
+    "hybrid": true,
+    "onsite": true,
+    "willing_to_relocate": true,
+    "_note": "Set these honestly; the agent answers work-mode questions from here."
+  },
+
+  "salary_expectation": {
+    "amount": 0,
+    "currency": "USD",
+    "period": "month",
+    "yearly_equivalent": 0,
+    "_note": "Numeric fields: read the label for period and currency — monthly vs annual, currency conversion. Other currency or unclear period → STOP and ask the user. Optional or free-text field → prefer 'Negotiable'."
+  },
+
+  "availability": {
+    "notice_period": "Immediately available",
+    "earliest_start_date": "immediately"
+  },
+
+  "self_identification": {
+    "policy": "decline_all",
+    "_note": "For voluntary EEO/demographic questions (gender, ethnicity, disability, veteran status): always select 'I don't wish to answer' / 'Decline to self-identify' unless the user explicitly says otherwise."
+  },
+
+  "form_defaults": {
+    "how_did_you_hear_about_us": "Only claim a source that is actually true for this posting; unknown → ask the user (one word); otherwise pick the truthful closest option ('Job board'/'Other')",
+    "age_over_18": "Yes",
+    "consent_checkboxes": "Required privacy-policy/data-processing consent → check; optional marketing/talent-pool retention → leave unchecked and mention in handover report",
+    "background_check_consent": null,
+    "_background_check_note": "Never answer background-check or criminal-record questions without asking the user."
+  }
+}

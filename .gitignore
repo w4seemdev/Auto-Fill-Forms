@@ -1,0 +1,9 @@
+# NEVER commit personal data — this project holds PII
+profile.json
+answers.json
+data/
+applications-log.md
+credentials*
+.env
+.env.*
+node_modules/

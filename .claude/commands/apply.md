@@ -6,7 +6,7 @@ Apply to: $ARGUMENTS
 
 Follow the full workflow and ALL HARD RULES in CLAUDE.md exactly - CLAUDE.md is the authority; this command adds nothing to it. Non-negotiable gates, restated:
 
-1. **Pre-flight**: verify `data/resume.pdf` exists (< 2 MB); check `applications-log.md` for duplicates - on a duplicate hit, STOP unless the user says continue; give a 3-4 line fit check and ask before continuing on a Weak fit.
+1. **Pre-flight**: verify `data/resume.pdf` exists (< 2 MB); check `applications-log.md` for a prior **submitted** application to the same company/URL (ignore skipped/abandoned rows) - on a hit, STOP unless the user says continue; give a 3-4 line fit check and ask before continuing on a Weak fit.
 2. Resume upload first, then fill every field from `profile.json` (profile beats the ATS parser). Missing required personal data → ask once, save back to profile.json.
 3. Screening questions from `answers.json`: `confirmed` entries used exactly; `rules` entries resolved to a single value - never paste rule text. New questions → ask the user, then save per the answers.json _readme.
 4. **Show the user for approval before filling**: any free-text answer longer than 2 sentences, and every cover letter (save approved letters to `data/cover-letters/`).

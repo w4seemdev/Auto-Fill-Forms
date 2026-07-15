@@ -28,7 +28,7 @@ This project is a personal assistant that fills online job-application forms for
 
 ### Step 0 - Pre-flight (before touching the form)
 1. **Resume check**: verify `data/resume.pdf` exists and is under 2 MB. If not, stop with a clear message.
-2. **Duplicate check**: search `applications-log.md` for the same company or URL. If found, tell the user and stop unless they say continue.
+2. **Duplicate check**: search `applications-log.md` for the same company or URL **with a `submitted*` status** (ignore `skipped`/`abandoned` rows - those are meant to be retried). If a submitted match is found, tell the user and stop unless they say continue.
 3. **Fit check**: read the job description. Report in 3-4 lines: role + seniority, top requirements vs `profile.json` (stack, seniority, years), **and the location/authorization dimension** - if the role is onsite/hybrid outside the user's authorized countries (i.e. would require visa sponsorship per `legal_authorization`), state that explicitly and factor it into the verdict (Strong / OK / Weak); ask before continuing when a junior-level role would need sponsorship. If the role clearly mismatches (seniority or stack far from the profile), say so and ask whether to continue - quality-over-volume gets more callbacks than spraying.
 
 ### Working efficiently (keep runs fast)
@@ -63,7 +63,7 @@ This project is a personal assistant that fills online job-application forms for
 ### Step 4 - Handover & log
 1. List every field filled, every field skipped and why.
 2. Tell the user the form is ready - they review and click Submit. **Do not navigate away** until they confirm.
-3. After they confirm submission, **verify it landed**: look for the on-screen confirmation ("Application submitted", a confirmation number, or a confirmation email via the "Email verification codes" scope). Then add a row to `applications-log.md`:
+3. After they confirm submission, **verify it landed** via the ON-SCREEN confirmation only ("Application submitted", a confirmation number/page). Do NOT browse the inbox for a confirmation - the "Email verification codes" scope forbids it except for a code you just triggered. Then add a row to `applications-log.md`:
    `| YYYY-MM-DD | Company | Role | Platform | URL | Status | Notes |`
    Status vocabulary: `submitted-confirmed` (saw confirmation), `submitted-unconfirmed` (clicked Submit, no confirmation seen - flag for the user to re-check), `skipped`, `abandoned` (with reason). Later stages the user can set by hand: `interview`, `offer`, `rejected`. The log is also the duplicate-check database.
 

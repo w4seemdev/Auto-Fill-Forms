@@ -24,6 +24,8 @@ This project is a personal assistant that fills online job-application forms for
 
 ## Application workflow
 
+> Setup check: the user can run `/doctor` to verify everything is wired before applying, and `/status` to see progress and follow-up reminders. These are separate commands so this always-loaded playbook stays lean and fast.
+
 ### Step 0 - Pre-flight (before touching the form)
 1. **Resume check**: verify `data/resume.pdf` exists and is under 2 MB. If not, stop with a clear message.
 2. **Duplicate check**: search `applications-log.md` for the same company or URL. If found, tell the user and stop unless they say continue.
@@ -54,15 +56,16 @@ This project is a personal assistant that fills online job-application forms for
 6. EEO/demographics (gender, ethnicity, disability, veteran): select "I don't wish to answer" / "Decline to self-identify" (policy in `profile.json`). Consent checkboxes: required privacy/data-processing consent → check; optional marketing/talent-pool → leave unchecked and mention in the handover report.
 
 ### Step 3 - Written answers & cover letter
+- **Tailor without inventing**: for each job, pick which of the user's REAL projects and skills (from `profile.json`) best match THIS posting's stack and requirements, and lead with those in free-text answers and any "relevant experience" field. Never add a skill, tool, or claim not in `profile.json` to match a job description (HARD RULE 4).
 - Free-text answers ("Why do you want to work here?", "Tell us about a project"): 2-5 sentences, first person, name ONE concrete project or fact from `profile.json` that matches the job's needs. No clichés ("I am passionate about..."), no generic AI-sounding filler. **Never use em-dashes (-) or semicolon-heavy sentences in any text entered into a form or cover letter** - use commas and periods; write like a person typing, not like a language model. Show the drafted answer to the user before filling if it is longer than 2 sentences.
 - If the form has a cover-letter field/upload: offer to draft one (max ~200 words, grounded in profile + this job's description). Show it to the user for approval; save a copy to `data/cover-letters/<company>-<role>.md`. Textarea field → paste the approved text. **Upload-only field → do NOT upload the .md**: skip the optional upload and tell the user in the handover report where the approved letter is saved so they can convert/attach it themselves.
 
 ### Step 4 - Handover & log
 1. List every field filled, every field skipped and why.
 2. Tell the user the form is ready - they review and click Submit. **Do not navigate away** until they confirm.
-3. After they confirm, add a row to `applications-log.md`:
-   `| YYYY-MM-DD | Company | Role | Platform | URL | submitted | notes |`
-   Also log `skipped`/`abandoned` outcomes with the reason - the log is also the duplicate-check database.
+3. After they confirm submission, **verify it landed**: look for the on-screen confirmation ("Application submitted", a confirmation number, or a confirmation email via the "Email verification codes" scope). Then add a row to `applications-log.md`:
+   `| YYYY-MM-DD | Company | Role | Platform | URL | Status | Notes |`
+   Status vocabulary: `submitted-confirmed` (saw confirmation), `submitted-unconfirmed` (clicked Submit, no confirmation seen - flag for the user to re-check), `skipped`, `abandoned` (with reason). Later stages the user can set by hand: `interview`, `offer`, `rejected`. The log is also the duplicate-check database.
 
 ### Batch mode
 If the user gives multiple URLs, process them one at a time: complete the full workflow including their review+Submit for one job before opening the next. Give a summary table at the end.

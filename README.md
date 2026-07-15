@@ -25,10 +25,12 @@ Your personal files (`profile.json`, `answers.json`, `data/`, `applications-log.
 ## Usage
 
 ```
-/apply <job-posting-url>
+/apply <job-posting-url>     fill a job application (you review + Submit)
+/doctor                      preflight check that everything is wired
+/status                      application progress + follow-up reminders
 ```
 
-The agent checks the job's fit against your profile, warns about duplicates, fills the form, drafts grounded free-text answers (shown to you for approval), and hands you the browser for the final review and Submit click. Multiple URLs are processed one at a time.
+The agent checks the job's fit against your profile, warns about duplicates, tailors free-text answers to the posting (only from your real profile, never invented), fills the form, verifies the submission landed, and logs it. It hands you the browser for CAPTCHAs, logins, and the final Submit click. Multiple URLs are processed one at a time.
 
 The full agent playbook - workflow, per-platform notes, and the hard rules - is in [CLAUDE.md](CLAUDE.md).
 

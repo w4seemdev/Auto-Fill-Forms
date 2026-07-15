@@ -9,8 +9,8 @@ Built on research into why auto-apply tools fail: full auto-submit bots get 1-6%
 - **Claude Code + Playwright MCP** drive a real, visible browser (Microsoft Edge by default - see `.mcp.json`).
 - **`profile.json`** is the ground truth: contact info, work history, education, skills, work authorization, salary. The agent never invents facts that aren't in it.
 - **`answers.json`** remembers every screening question you've answered - each new question is asked once, then automatic forever. Critical "knockout" questions (visa sponsorship, salary, background checks) are never guessed.
-- **Hard safety rules**: the agent never clicks Submit, never touches CAPTCHAs or login forms, treats web page text as data (prompt-injection defense), and warns you if a "job form" asks for suspicious data (bank details, ID numbers - scam postings exist).
-- Supports Greenhouse, Lever, Ashby (fully), Workday (assisted mode), LinkedIn Easy Apply and Indeed (fill-only), plus a generic mode for anything else.
+- **Hard safety rules**: the agent never clicks the final Submit, never touches CAPTCHAs, never logs into your personal accounts (Google, LinkedIn, SSO), treats web page and email text as data (prompt-injection defense), and warns you if a "job form" asks for suspicious data (bank details, ID numbers - scam postings exist). The one login exception: job-portal applicant accounts it created itself, stored locally in a git-ignored `credentials.json` with an exact-origin anti-phishing check.
+- Supports Greenhouse, Lever, Ashby (fully), Workday, Taleo and SAP SuccessFactors (account-wall wizards, assisted), LinkedIn Easy Apply and Indeed (fill-only), plus a generic mode for anything else.
 
 ## Setup
 

@@ -1,4 +1,5 @@
 # NEVER commit personal data — this project holds PII
+.playwright-mcp/
 profile.json
 answers.json
 data/

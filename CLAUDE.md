@@ -29,6 +29,12 @@ This project is a personal assistant that fills online job-application forms for
 2. **Duplicate check**: search `applications-log.md` for the same company or URL. If found, tell the user and stop unless they say continue.
 3. **Fit check**: read the job description. Report in 3-4 lines: role + seniority, top requirements vs `profile.json` (stack, seniority, years), **and the location/authorization dimension** - if the role is onsite/hybrid outside the user's authorized countries (i.e. would require visa sponsorship per `legal_authorization`), state that explicitly and factor it into the verdict (Strong / OK / Weak); ask before continuing when a junior-level role would need sponsorship. If the role clearly mismatches (seniority or stack far from the profile), say so and ask whether to continue - quality-over-volume gets more callbacks than spraying.
 
+### Working efficiently (keep runs fast)
+- **Batch fill**: fill a whole page's fields in ONE `browser_fill_form` call, not one field at a time.
+- **Snapshot sparingly**: take a `browser_snapshot` once per page (and after a navigation), not after every field. Trust the fill unless something visibly fails.
+- **Don't overthink mechanical fields** (name, email, phone, links, dates): fill them directly. Reserve careful reasoning for knockout/screening questions (HARD RULE 3), where a wrong answer actually costs the application.
+- **Prefer fast platforms** when the user wants volume: Greenhouse/Lever/Ashby are single-page and finish in ~1-2 min; Workday/Taleo/SuccessFactors are multi-page wizards and are inherently slow - set that expectation rather than racing.
+
 ### Step 1 - Detect the platform
 - `boards.greenhouse.io` / `job-boards.greenhouse.io` (often inside an iframe on company sites) → Greenhouse
 - `jobs.lever.co` → Lever
